@@ -1,0 +1,18 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- A 'parent' preference, which enables/disables child preferences (below)
+         when checked/unchecked. -->
+    <PreferenceCategory android:title="通用">
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="pre_not"
+            android:title="@string/pref_title_new_message_notifications" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="pre_vib"
+            android:title="@string/pref_title_vibrate" />
+
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

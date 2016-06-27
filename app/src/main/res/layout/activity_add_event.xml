@@ -1,94 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
-    android:orientation="vertical">
+   >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="16dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <LinearLayout
+        android:id="@+id/add_event_layout_top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="80dp"
+        android:layout_below="@+id/toolbar"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <LinearLayout
-            android:id="@+id/action_bar"
+        <EditText
+            android:id="@+id/alarm_title"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/colorPrimary"
-            android:orientation="horizontal">
+            android:layout_height="80dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginRight="16dp"
+            android:gravity="top|left"
+            android:hint="@string/add_event"
+            android:inputType="textCapWords|textMultiLine"
+            android:lines="4"
+            android:minLines="4"
+            android:scrollHorizontally="false"
+            android:textColor="@android:color/white"
+            android:textColorHint="@color/primary_text_disabled_material_dark"
+            android:textSize="25dp" />
 
-            <ImageButton
-                android:id="@+id/left_clear"
-                style="@style/imageButtonStyle"
-                android:src="@mipmap/ic_clear_white_24dp" />
-            <TextView
-                android:id="@+id/insert_update_title"
-                style="@style/ActivityTitleStyle"
-                android:text="新建活动"/>
-
-            <TextView
-                android:id="@+id/tv_save"
-                style="@style/leftTextViewStyle"
-                android:text="保存"/>
-        </LinearLayout>
     </LinearLayout>
+
+
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/add_event_layout_top">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/alarm_title"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:paddingLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:background="@null"
-                android:hint="输入标题"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#4fa3a3a3"
-                />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
                 <RelativeLayout
+                    android:layout_marginTop="30dp"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp">
-
-                    <ImageView
-                        android:id="@+id/iv_all_day"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_centerVertical="true"
-                        android:background="@mipmap/ic_access_time_grey_600_24dp"/>
+                    android:layout_height="30dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_toRightOf="@id/iv_all_day"
-                        android:layout_marginLeft="40dp"
-                        android:textColor="#000"
-                        android:text="全天"/>
+                        android:layout_marginLeft="20dp"
+                        android:text="日期、时间"
+                        android:textColor="#000" />
 
-                    <Switch
-                        android:id="@+id/sw_all_day"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
-                        android:layout_centerVertical="true"/>
                 </RelativeLayout>
 
                 <TextView
@@ -96,143 +82,87 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:gravity="center_vertical"
-                    android:paddingLeft="75dp"
-                    android:textColor="#000"
-                    android:text="选择活动日期"/>
+                    android:paddingLeft="40dp"
+                    android:text="选择日期"
+                    android:textColor="#000" />
 
                 <TextView
                     android:id="@+id/alarm_start_time"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:gravity="center_vertical"
-                    android:paddingLeft="75dp"
-                    android:textColor="#000"
-                    android:text="选择开始时间"/>
+                    android:paddingLeft="40dp"
+                    android:text="选择开始时间"
+                    android:textColor="#000" />
 
                 <TextView
                     android:id="@+id/alarm_end_time"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:gravity="center_vertical"
-                    android:paddingLeft="75dp"
-                    android:textColor="#000"
-                    android:text="选择结束时间"/>
-
+                    android:paddingLeft="40dp"
+                    android:text="选择结束时间"
+                    android:textColor="#000" />
 
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#4fa3a3a3"
-                    />
-
+                    android:background="#4fa3a3a3" />
 
 
 
                 <RelativeLayout
-                    android:id="@+id/layout_alarm_vibrate"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp">
-
-                    <ImageView
-                        android:id="@+id/iv_vibrate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_centerVertical="true"
-                        />
+                    android:layout_height="30dp">
 
                     <TextView
-                        android:id="@+id/alarm_vibrate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_toRightOf="@id/iv_vibrate"
-                        android:layout_marginLeft="40dp"
-                        android:textColor="#000"
-                        android:text="震动"/>
-
-                    <Switch
-                        android:id="@+id/sw_vibrate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
-                        android:layout_centerVertical="true"/>
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#4fa3a3a3"
-                    />
-
-                <RelativeLayout
-                    android:id="@+id/layout_alarm_tone_Path"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp">
-
-                    <ImageView
-                        android:id="@+id/iv_alarm_tone_Path"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_centerVertical="true"
-                      />
-
-                    <TextView
-                        android:id="@+id/alarm_tone_Path"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_toRightOf="@id/iv_alarm_tone_Path"
-                        android:layout_marginLeft="40dp"
-                        android:textColor="#000"
-                        android:text="选择铃声"/>
+                        android:layout_marginLeft="20dp"
+                        android:text="内容"
+                        android:textColor="#000" />
 
                 </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#4fa3a3a3"
-                    />
-
-
-
 
                 <RelativeLayout
                     android:id="@+id/layout_alarm_description"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent">
 
-                    <ImageView
-                        android:id="@+id/iv_description"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_centerVertical="true"
-                        android:background="@mipmap/ic_menu_grey_600_24dp"/>
 
                     <EditText
                         android:id="@+id/alarm_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="75dp"
                         android:layout_marginTop="5dp"
-                        android:lines="5"
                         android:background="@null"
-                        android:textSize="14sp"
-                        android:hint="添加备注"/>
+                        android:hint="添加内容"
+                        android:maxLines="10"
+                        android:paddingLeft="40dp"
+                        android:paddingRight="20dp"
+                        android:textSize="14sp" />
                 </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#4fa3a3a3"
-                    />
+
+
+
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+    <com.getbase.floatingactionbutton.FloatingActionButton
+        android:id="@+id/starred2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        fab:fab_icon="@drawable/ic_create_white_24dp"
+        fab:fab_colorNormal="@color/blueGrey"
+        fab:fab_colorPressed="@color/colorPrimaryDark"
+        app:fab_size="normal"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="8dp"/>
 
-</LinearLayout>
+</RelativeLayout>

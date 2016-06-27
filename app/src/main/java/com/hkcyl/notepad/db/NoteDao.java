@@ -70,8 +70,8 @@ public class NoteDao {
     /**
      * 删除指定数据
      */
-    public void deleteDataById(int id) {
-        db.delete(helper.DB_NAME, helper.ID+"=?", new String[]{id+""});
+    public void deleteDataById(EventBean eventBean) {
+        db.delete(helper.TABLE_NAME, helper.ID + "=?", new String[]{String.valueOf(eventBean.getmId())});
     }
 
     /**
@@ -83,7 +83,7 @@ public class NoteDao {
         values.put(helper.CONTENT,bean.getmDescription());
         values.put(helper.START_TIME,bean.getmStartTime());
         values.put(helper.END_TIME,bean.getmEndTime());
-        db.update(helper.DB_NAME ,values,helper.ID+"=?",new String[]{id+""});
+        db.update(helper.TABLE_NAME ,values,helper.ID+"=?",new String[]{id+""});
     }
     /**
      * 获取游标

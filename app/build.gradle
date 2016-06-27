@@ -22,18 +22,19 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
+
+    //注解 butterKnife
+    //RapidFloatingActionButton
+
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:support-v4:23.3.0'
     compile 'com.android.support:design:23.3.0'
-
-    //注解 butterKnife
     compile 'com.jakewharton:butterknife:7.0.1'
-    //RapidFloatingActionButton
-    compile 'com.github.wangjiegulu:RapidFloatingActionButton:1.0.3'
-    compile 'com.github.wangjiegulu:AndroidBucket:1.0.4'
     compile 'com.nineoldandroids:library:2.4.0'
-
-    compile 'com.github.wangjiegulu:RapidFloatingActionButton:1.0.3'
-    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.getbase:floatingactionbutton:1.9.0'
     compile 'com.android.support:cardview-v7:23.3.0'
+
+    compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+    compile 'com.bignerdranch.android:recyclerview-multiselect:0.2'
+
 }
