@@ -77,13 +77,13 @@ public class NoteDao {
     /**
      * 更新指定数据
      */
-    public void updateDataById(int id,EventBean bean){
+    public void updateDataById(EventBean bean){
         ContentValues values=new ContentValues();
         values.put(helper.TITLE,bean.getmTitle());
         values.put(helper.CONTENT,bean.getmDescription());
         values.put(helper.START_TIME,bean.getmStartTime());
         values.put(helper.END_TIME,bean.getmEndTime());
-        db.update(helper.TABLE_NAME ,values,helper.ID+"=?",new String[]{id+""});
+        db.update(helper.TABLE_NAME ,values,helper.ID+"=?",new String[]{String.valueOf(bean.getmId())});
     }
     /**
      * 获取游标

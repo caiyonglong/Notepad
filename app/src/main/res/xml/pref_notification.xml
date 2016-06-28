@@ -1,4 +1,5 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    >
 
     <!-- A 'parent' preference, which enables/disables child preferences (below)
          when checked/unchecked. -->
@@ -12,7 +13,22 @@
             android:key="pre_vib"
             android:title="@string/pref_title_vibrate" />
 
+        <RingtonePreference
+            android:defaultValue="content://settings/system/notification_sound"
+            android:key="pre_ring"
+            android:ringtoneType="notification"
+            android:title="@string/pref_title_ringtone" />
 
+    </PreferenceCategory>
+    <PreferenceCategory android:title="关于"
+        >
+        <Preference android:title="github"
+            android:key="github"
+            android:summary="http://www.github.com/caiyonglong"
+            />
+        <Preference android:title="开源"
+            android:summary="License"
+            />
     </PreferenceCategory>
 
 </PreferenceScreen>

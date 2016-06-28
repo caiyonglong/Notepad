@@ -21,6 +21,7 @@ import android.widget.TimePicker;
 
 import com.hkcyl.notepad.bean.EventBean;
 import com.hkcyl.notepad.db.NoteDao;
+import com.hkcyl.notepad.utils.RemindHelper;
 
 
 import java.text.SimpleDateFormat;
@@ -36,8 +37,10 @@ import butterknife.OnClick;
  */
 public class AddEventActivity extends AppCompatActivity{
 
+    public static final String EXTRA_REMINDER_ID = "id";
     private android.app.DatePickerDialog mDataPicker;
     private android.app.TimePickerDialog mStartTimePicker, mEndTimePicker;
+    private long sTime= 0,eTime = 0;
 
     @Bind(R.id.alarm_title)
     EditText alarm_title;
@@ -56,12 +59,6 @@ public class AddEventActivity extends AppCompatActivity{
     //描述
     @Bind(R.id.alarm_description)
     EditText alarm_description;
-//    //保存
-//    @Bind(R.id.tv_save)
-//    TextView tv_save;
-//    //取消
-//    @Bind(R.id.left_clear)
-//    ImageButton left_clear;
 
     NoteDao dao;
 
@@ -73,6 +70,7 @@ public class AddEventActivity extends AppCompatActivity{
     @OnClick(R.id.alarm_start_time)
     void start() {
         getStartTimePickerDialog();
+
         mStartTimePicker.show();
     }
 
@@ -82,17 +80,13 @@ public class AddEventActivity extends AppCompatActivity{
         mEndTimePicker.show();
     }
 
-    @OnClick(R.id.alarm_date)
-    void date() {
-        getDatePickerDialog();
-        mDataPicker.show();
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
         ButterKnife.bind(this);
+
         dao = new NoteDao(this);
         initedit();
 
@@ -147,6 +141,9 @@ public class AddEventActivity extends AppCompatActivity{
             @Override
             public void afterTextChanged(Editable s) {}
         });
+
+        //初始化日期
+        setDate();
     }
 
     @Override
@@ -197,14 +194,32 @@ public class AddEventActivity extends AppCompatActivity{
     private void saveEvent() {
         if (isEditModel){
             Log.e("datas",beanlists.toString());
-            dao.updateDataById(beanlists.getmId(),beanlists);
+            beanlists.setmTitle(alarm_title.getText().toString() + "");
+            beanlists.setmDescription(alarm_description.getText().toString() + "");
+            beanlists.setmStartTime(alarm_start_time.getText().toString() + "");
+            beanlists.setmEndTime(alarm_end_time.getText().toString() + "");
+            dao.updateDataById(beanlists);
+
+            if (sTime!=0&&eTime!=0){
+                RemindHelper.setAlarmTime(getApplicationContext(),sTime);
+             //   RemindHelper.setAlarmTime(getApplicationContext(),eTime,beanlists.getmId());
+
+            }
         }else {
             EventBean beanlist = new EventBean();
             beanlist.setmTitle(alarm_title.getText().toString() + "");
             beanlist.setmDescription(alarm_description.getText().toString() + "");
             beanlist.setmStartTime(alarm_start_time.getText().toString() + "");
             beanlist.setmEndTime(alarm_end_time.getText().toString() + "");
+            if (sTime!=0&&eTime!=0){
+
+                RemindHelper.setAlarmTime(getApplicationContext(),sTime);
+             //   RemindHelper.setAlarmTime(getApplicationContext(),eTime);
+
+            }
             dao.insertEvent(beanlist);
+
+
 
         }
         startActivity(new Intent(this, MainActivity.class));
@@ -213,23 +228,14 @@ public class AddEventActivity extends AppCompatActivity{
 
 
     /**
-     * 获取日期选择器
+     * 初始化日期
      */
-    private void getDatePickerDialog() {
+    private void setDate() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        mDataPicker = new android.app.DatePickerDialog(this, new android.app.DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy年MM月dd日  EE");
 
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(year, monthOfYear, dayOfMonth);
-                SimpleDateFormat df = new SimpleDateFormat("yyyy年MM月dd日  EE");
-
-                alarm_date.setText(df.format(calendar.getTime()));
-
-            }
-        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        alarm_date.setText(df.format(calendar.getTime()));
     }
 
     /**
@@ -246,7 +252,7 @@ public class AddEventActivity extends AppCompatActivity{
                 calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                 calendar.set(Calendar.MINUTE, minute);
                 SimpleDateFormat df = new SimpleDateFormat("HH:mm");
-
+                sTime = calendar.getTimeInMillis();
                 alarm_start_time.setText("开始时间:  " + df.format(calendar.getTime()));
 
             }
@@ -266,7 +272,7 @@ public class AddEventActivity extends AppCompatActivity{
                 calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                 calendar.set(Calendar.MINUTE, minute);
                 SimpleDateFormat df = new SimpleDateFormat("HH:mm");
-
+                eTime = calendar.getTimeInMillis();
                 alarm_end_time.setText("结束时间:  " + df.format(calendar.getTime()));
 
             }

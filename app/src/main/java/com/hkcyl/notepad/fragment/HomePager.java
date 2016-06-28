@@ -87,6 +87,7 @@ public class HomePager extends BasePager implements IEventView, EventAdapter.OnI
 
 
         });
+        show(MainActivity.add_event);
     }
 
     private void onScrolldown() {
@@ -225,6 +226,7 @@ public class HomePager extends BasePager implements IEventView, EventAdapter.OnI
     public void onItemLongClick(View view, final int position) {
         new AlertDialog.Builder(mActivity)
                 .setTitle("提示")
+                .setIcon(R.drawable.ic_delete_white_24dp)
                 .setMessage("删除本条目")
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override

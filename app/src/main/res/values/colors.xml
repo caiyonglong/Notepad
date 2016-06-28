@@ -2,10 +2,11 @@
 <resources>
     <color name="colorPrimary">#323453</color>
     <color name="colorPrimaryDark">#282942</color>
-    <color name="colorAccent">#03A9F4</color>
+    <color name="colorAccent">#607d8b</color>
 
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="bg_color">#263238</color>
     <!--Material Design Color-->
     <color name="red">#e51c23</color>
     <color name="pink">#e91e63</color>

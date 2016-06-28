@@ -20,9 +20,6 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    //侧滑菜单
-    @Bind(R.id.nav_view)
-    NavigationView mNavigationView;
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
 
@@ -62,12 +59,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    /**
-     * 得到侧滑菜单
-     */
-    public NavigationView getNavigationView(){
-        return mNavigationView;
-    }
+
     /**
      * 得到DrawerLayout
      */

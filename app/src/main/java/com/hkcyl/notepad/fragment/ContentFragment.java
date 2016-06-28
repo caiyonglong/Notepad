@@ -69,25 +69,8 @@ public class ContentFragment extends BaseFragment {
 
         //获取侧边栏
         MainActivity mainUi= (MainActivity) mActivity;
-        navigationView = mainUi.getNavigationView();
-        navigationView.setCheckedItem(R.id.nav_camera);
         buildHomePager();
-        drawerLayout=mainUi.getDrawerLayout();
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-                switch(item.getItemId()){
-                    case R.id.nav_camera:
-                        vpContent.setCurrentItem(0, false);//设置当前的页面，取消平滑滑动
-                        buildHomePager();
-                        break;
 
-                }
-                item.setChecked(true);//点击了设置为选中状态
-                drawerLayout.closeDrawers();
-                return true;
-            }
-        });
 
     }
 
