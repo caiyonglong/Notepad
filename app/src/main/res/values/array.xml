@@ -2,9 +2,9 @@
 <resources>
 
     <string-array name="spinner_repeat">
-        <item>只提醒一次</item>
-        <item>每天</item>
-        <item>周一到周五</item>
-        <item>周末</item>
+        <item>不重复</item>
+        <item>一分钟一次</item>
+        <item>一小时一次</item>
+        <item>一天一次</item>
     </string-array>
 </resources>

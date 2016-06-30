@@ -17,6 +17,9 @@ public class NoteDBHelper extends SQLiteOpenHelper {
     public static final String ID = "_id";
     public static final String START_TIME = "start_time";
     public static final String END_TIME = "end_time";
+    public static final String IS_ACTIVE = "is_active";
+    public static final String IS_REMIND = "is_remind";
+    public static final String INTERVAL = "interval";
 
     public NoteDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -26,8 +29,10 @@ public class NoteDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_NAME + " (" + ID
                 + " INTEGER PRIMARY KEY AUTOINCREMENT," + TITLE
-                + " VARCHAR(100) NOT NULL," + CONTENT + " VARCHAR(100)," + START_TIME
-                + " VARCHAR(100) NOT NULL," + END_TIME + " VARCHAR(100) NOT NULL)");
+                + " VARCHAR(100) NOT NULL," + CONTENT + " TEXT," + START_TIME
+                + " VARCHAR(100)," + END_TIME + " VARCHAR(100)," +IS_ACTIVE
+                + " VARCHAR(20)," +IS_REMIND
+                + " VARCHAR(20)," +INTERVAL+ " INTEGER )");
     }
 
     @Override

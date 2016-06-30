@@ -38,18 +38,45 @@ S
             android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             ></FrameLayout>
-        <com.getbase.floatingactionbutton.AddFloatingActionButton
-            android:id="@+id/add_event"
+
+
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/fab_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_gravity="bottom|end"
             android:clickable="true"
-            fab:fab_colorNormal="@color/colorPrimary"
-            fab:fab_colorPressed="@color/colorPrimaryDark"
+            fab:fab_labelStyle="@style/menu_labels_style"
+            app:fab_addButtonColorNormal="@color/blueGrey"
+            app:fab_addButtonColorPressed="@color/colorPrimary"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="8dp"
-            android:layout_marginRight="8dp"/>
+            android:layout_marginRight="8dp">
+
+
+            <com.getbase.floatingactionbutton.AddFloatingActionButton
+                android:id="@+id/add_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                fab:fab_title="新增提醒"
+                fab:fab_colorNormal="@color/blueGrey"
+                fab:fab_colorPressed="@color/colorPrimaryDark"
+               />
+            <com.getbase.floatingactionbutton.AddFloatingActionButton
+                android:id="@+id/add_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                app:fabSize="mini"
+                app:fab_title="新增记事"
+                app:fab_icon="@mipmap/icon_note"
+                app:fab_colorNormal="@color/blueGrey"
+                app:fab_colorPressed="@color/colorPrimaryDark"
+               />
+
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 
 

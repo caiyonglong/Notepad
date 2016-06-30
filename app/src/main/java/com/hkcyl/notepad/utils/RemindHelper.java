@@ -2,24 +2,21 @@ package com.hkcyl.notepad.utils;
 
 import android.app.Activity;
 import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Vibrator;
-import android.support.v7.app.NotificationCompat;
 
-import com.hkcyl.notepad.AddEventActivity;
-import com.hkcyl.notepad.MainActivity;
-import com.hkcyl.notepad.R;
+import com.hkcyl.notepad.bean.Reminder;
 
 /**
  * Created by yonglong on 2016/6/27.
  */
 public class RemindHelper {
 
+    static AlarmManager am;
     /**
      * 震动
      *
@@ -47,18 +44,18 @@ public class RemindHelper {
 
     }
 
-    public static void setAlarmTime(Context context, long timeInMillis) {
+    public static void setAlarmTime(Context context, long timeInMillis, Reminder beanlists) {
 
-        AlarmManager am = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        am = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
 
         Intent intent = new Intent("android.alarm.notepad.action");
-        intent.putExtra("value","test");
+        intent.putExtra("reminder",beanlists);
 
         PendingIntent sender = PendingIntent.getBroadcast(
 
                 context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-        int interval = 60 * 1000;//闹铃间隔， 这里设为1分钟闹一次，在第2步我们将每隔1分钟收到一次广播
+        int interval = 24*60*60 * 1000;//闹铃间隔， 这里设为1分钟闹一次，在第2步我们将每隔1分钟收到一次广播
 
         am.setRepeating(AlarmManager.RTC_WAKEUP, timeInMillis, interval, sender);
 

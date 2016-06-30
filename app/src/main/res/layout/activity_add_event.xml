@@ -108,15 +108,15 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
-                        android:text="重复"
+                        android:text="提醒周期"
 
                         android:textColor="@color/white" />
 
                 </RelativeLayout>
                 <Spinner
+                    android:id="@+id/alarm_interval"
                     android:layout_marginLeft="40dp"
                     android:entries="@array/spinner_repeat"
-
                     android:layout_width="wrap_content"
                     android:layout_height="50dp" />
 

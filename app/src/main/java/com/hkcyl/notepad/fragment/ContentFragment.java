@@ -1,17 +1,15 @@
 package com.hkcyl.notepad.fragment;
 
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.hkcyl.notepad.MainActivity;
 import com.hkcyl.notepad.R;
-import com.hkcyl.notepad.bean.EventBean;
+import com.hkcyl.notepad.bean.Reminder;
 import com.hkcyl.notepad.db.NoteDao;
 
 import java.util.ArrayList;
@@ -32,7 +30,7 @@ public class ContentFragment extends BaseFragment {
     private DrawerLayout drawerLayout;//DrawerLayout
 
 
-    private  List<EventBean> eventList;
+    private  List<Reminder> eventList;
     private NoteDao dao;
     private HomePager homePager;
 

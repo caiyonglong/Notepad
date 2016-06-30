@@ -26,7 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddEventActivity" />
+        <activity android:name=".AddRemindActivity" />
         <activity
             android:name=".DetailActivity"
             android:label="@string/title_activity_detail" />

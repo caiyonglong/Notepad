@@ -4,7 +4,6 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -24,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout mDrawerLayout;
 
     public static FloatingActionButton add_event;
+    public static String NOTES_NEW_NOTES = "new_note";
+    public static String NOTES_NEW_REMIND = "new_remind";
+    public static String NOTES_EDIT = "edit";
 
 
     @Override
@@ -49,21 +51,21 @@ public class MainActivity extends AppCompatActivity {
         add_event.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddEventActivity.class);
-                intent.putExtra("type","mainToAdd");
+
+                Intent intent = new Intent(MainActivity.this, AddRemindActivity.class);
+                intent.putExtra("action", "new_remind");
                 startActivity(intent);
-              //  finish();
+                //  finish();
             }
         });
 
     }
 
 
-
     /**
      * 得到DrawerLayout
      */
-    public DrawerLayout getDrawerLayout(){
+    public DrawerLayout getDrawerLayout() {
         return mDrawerLayout;
     }
 
@@ -73,14 +75,14 @@ public class MainActivity extends AppCompatActivity {
      */
     private void initLayoutView() {
         //初始化 CalendarView,设置颜色
-    //填充 Fragment
-        FragmentManager manager =getFragmentManager();
+        //填充 Fragment
+        FragmentManager manager = getFragmentManager();
 
         FragmentTransaction transaction = manager.beginTransaction();
 
         ContentFragment fragment = new ContentFragment();
 
-        transaction.replace(R.id.main_frame,fragment, "CONTENT_FRAGMENT");
+        transaction.replace(R.id.main_frame, fragment, "CONTENT_FRAGMENT");
 
         transaction.commit();
 
@@ -108,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent intent = new Intent(this,SettingsActivity.class);
+            Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
             return true;
         }

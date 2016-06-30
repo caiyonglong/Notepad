@@ -10,27 +10,30 @@ import android.media.RingtoneManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.hkcyl.notepad.bean.EventBean;
-import com.hkcyl.notepad.db.NoteDao;
+import com.hkcyl.notepad.bean.Reminder;
 import com.hkcyl.notepad.utils.RemindHelper;
+import com.hkcyl.notepad.utils.SharedPreferenceUtils;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        Log.e("test",intent.getStringExtra("value")+"=====");
+        Reminder reminder = (Reminder) intent.getSerializableExtra("reminder");
+        Log.e("test",reminder.getmDescription()+"=====");
+        Log.e("test",reminder.getmStartTime()+"=====");
         int mReceivedID = 0;
-        RemindHelper.Vibrate(context,1000);
-        // Get notification title from Reminder Database
-        NoteDao rb = new NoteDao(context);
-        EventBean reminder = rb.getAll().get(mReceivedID);
+
+        if (SharedPreferenceUtils.getVibrate(context)) {
+            RemindHelper.Vibrate(context, 1000);
+        }
         String mTitle = reminder.getmTitle();
 
         // Create intent to open ReminderEditActivity on notification click
-        Intent editIntent = new Intent(context, AddEventActivity.class);
-        editIntent.putExtra(AddEventActivity.EXTRA_REMINDER_ID, Integer.toString(mReceivedID));
+        Intent editIntent = new Intent(context, AddRemindActivity.class);
+        editIntent.putExtra(AddRemindActivity.EXTRA_REMINDER_ID, Integer.toString(mReceivedID));
         PendingIntent mClick = PendingIntent.getActivity(context, mReceivedID, editIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
 
         // Create Notification
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
