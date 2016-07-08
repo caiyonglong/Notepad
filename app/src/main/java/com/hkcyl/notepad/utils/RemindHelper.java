@@ -44,7 +44,7 @@ public class RemindHelper {
 
     }
 
-    public static void setAlarmTime(Context context, long timeInMillis, Reminder beanlists) {
+    public static void setAlarmTime(Context context, long timeInMillis, Reminder beanlists,int requestcode) {
 
         am = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
 
@@ -53,7 +53,7 @@ public class RemindHelper {
 
         PendingIntent sender = PendingIntent.getBroadcast(
 
-                context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+                context, requestcode, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         int interval = 24*60*60 * 1000;//闹铃间隔， 这里设为1分钟闹一次，在第2步我们将每隔1分钟收到一次广播
 

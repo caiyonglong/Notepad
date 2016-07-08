@@ -13,6 +13,7 @@ import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.hkcyl.notepad.R;
 import com.hkcyl.notepad.bean.Reminder;
+import com.hkcyl.notepad.utils.TimeUtil;
 
 import java.util.List;
 
@@ -79,9 +80,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder>{
                         mColorGenerator.getRandomColor(),10);
         holder.image.setImageDrawable(textDrawable);
 
+
         holder.title.setText(beanList.get(position).getmTitle()+"");
-        holder.start_time.setText(beanList.get(position).getmStartTime()+"");
-        holder.end_time.setText(beanList.get(position).getmEndTime()+"");
+        holder.start_time.setText("开始时间："+
+                TimeUtil.getTime(Long.parseLong(beanList.get(position).getmStartTime())));
+        holder.end_time.setText("结束时间："+
+                TimeUtil.getTime(Long.parseLong(beanList.get(position).getmEndTime())));
 
     }
 
